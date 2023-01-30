@@ -13,7 +13,7 @@ function LandingPage() {
         justifyContent: "center",
         flexDirection: "column",
         alignItems: "center",
-        height: "720px",
+        height: "100vh",
         color: "#ffff",
         background:
           "linear-gradient(to left bottom, #051937, #003859, #005b76, #007e8b, #36a298)",
@@ -22,56 +22,69 @@ function LandingPage() {
       <div
         style={{
           width: "95%",
+          maxWidth: "1450px",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           margin: "16px 0",
         }}
       >
-        <span
-          style={{
-            fontFamily: "sans-serif",
-            margin: "16px 0",
-            textShadow: "2px 2px 5px #000",
-            cursor: "pointer",
-            fontSize: "36px",
-          }}
+        <motion.div
+          initial={{ x: -100 }}
+          animate={{ x: 0 }}
+          transition={{ ease: "easeOut", duration: 0.3 }}
         >
-          myResume.
-        </span>
-        <div style={{ display: "flex" }}>
-          <StyledButton
-            title="Signup"
+          <span
             style={{
-              width: "30%",
-              display: "flex",
-              justifyContent: "center",
-              textAlign: "center",
-              color: "#ffff",
-              "&:hover": {
+              fontFamily: "sans-serif",
+              margin: "16px 0",
+              textShadow: "2px 2px 5px #000",
+              cursor: "pointer",
+              fontSize: "36px",
+            }}
+          >
+            myResume.
+          </span>
+        </motion.div>
+        <motion.div
+          initial={{ x: 100 }}
+          animate={{ x: 0 }}
+          transition={{ ease: "easeOut", duration: 0.3 }}
+        >
+          <div style={{ display: "flex" }}>
+            <StyledButton
+              title="Signup"
+              style={{
+                width: "30%",
+                display: "flex",
+                justifyContent: "center",
+                textAlign: "center",
+                color: "#ffff",
+                "&:hover": {
+                  color: "#ffff",
+                  backgroundColor: "#007e8b",
+                },
+              }}
+              varient="text"
+            />
+            <StyledButton
+              title="Login"
+              style={{
+                width: "30%",
+                display: "flex",
+                justifyContent: "center",
+                textAlign: "center",
                 color: "#ffff",
                 backgroundColor: "#007e8b",
-              },
-            }}
-            varient="text"
-          />
-          <StyledButton
-            title="Login"
-            style={{
-              width: "30%",
-              display: "flex",
-              justifyContent: "center",
-              textAlign: "center",
-              color: "#ffff",
-              backgroundColor: "#007e8b",
-              "&:hover": {
-                color: "#ffff",
-                backgroundColor: "#007e8b",
-              },
-            }}
-            varient="text"
-          />
-        </div>
+                "&:hover": {
+                  color: "#ffff",
+                  backgroundColor: "#007e8b",
+                },
+              }}
+              varient="text"
+            />
+          </div>
+        </motion.div>
       </div>
       <Container>
         <div
@@ -90,9 +103,9 @@ function LandingPage() {
             }}
           >
             <motion.div
-              initial={{ x: 100 }}
-              animate={{ x: 0 }}
-              transition={{ ease: "easeOut", duration: 0.2 }}
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+              transition={{ ease: "easeOut", duration: 0.3 }}
             >
               <Typography
                 sx={{ textShadow: "2px 2px 5px rgba(9, 105, 121, 1)" }}
@@ -103,9 +116,9 @@ function LandingPage() {
               </Typography>
             </motion.div>
             <motion.div
-              initial={{ x: -100 }}
-              animate={{ x: 0 }}
-              transition={{ ease: "easeOut", duration: 0.2 }}
+              initial={{ y: 100 }}
+              animate={{ y: 0 }}
+              transition={{ ease: "easeOut", duration: 0.4 }}
             >
               <Typography
                 variant="h6"

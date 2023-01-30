@@ -29,7 +29,7 @@ function HomepageInstructions() {
           >
             <HomeStepper
               alt="image not found"
-              link="assets\6192594_3125988-removebg-preview.png"
+              link="assets\image1.png"
             />
             <span
               style={{
@@ -65,7 +65,7 @@ function HomepageInstructions() {
           >
             <HomeStepper
               alt="image not found"
-              link="assets\12079892_4906435-removebg-preview.png"
+              link="assets\image2.png"
             />
 
             <span
@@ -102,7 +102,7 @@ function HomepageInstructions() {
           >
             <HomeStepper
               alt="image not found"
-              link="assets\7191119_3569284-removebg-preview.png"
+              link="assets\image3.png"
             />
 
             <span
