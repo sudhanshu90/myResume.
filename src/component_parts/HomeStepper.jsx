@@ -1,7 +1,6 @@
-import { Divider, Paper } from "@mui/material";
 import React from "react";
 
-function HomeStepper({ link, alt }) {
+function HomeStepper({ link, alt,height,width }) {
   return (
     <div>
       <div
@@ -15,7 +14,7 @@ function HomeStepper({ link, alt }) {
           color: "#ffff",
         }}
       >
-        <img alt={alt} height={160} width={200} src={link} />
+        <img alt={alt} height={height} width={width} src={link} />
       </div>
     </div>
   );
