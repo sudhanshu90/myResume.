@@ -1,11 +1,10 @@
 import { Typography } from "@mui/material";
 import React from "react";
 import { motion } from "framer-motion";
-import DescriptionIcon from "@mui/icons-material/Description";
-import StyledButton from "../component_parts/StyledButton";
 import LockIcon from "@mui/icons-material/Lock";
 import EastIcon from "@mui/icons-material/East";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import StyledButton from "../component_parts/sharedComponent/StyledButton";
 
 function HomePageHeader({ chooseTemplates, ResumePage }) {
   const matches = useMediaQuery("(max-width:450px)");

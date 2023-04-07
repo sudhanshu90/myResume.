@@ -1,21 +1,18 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import Box from "@mui/material/Box";
-import StyledButton from "../component_parts/StyledButton";
 import { Avatar, Tooltip, useMediaQuery } from "@mui/material";
 import Signup from "../component_parts/auth/Signup";
 import Login from "../component_parts/auth/Login";
 import AuthContext from "../component_parts/auth/Context/AuthContext";
-import LogoutIcon from "@mui/icons-material/Logout";
 import { startCase } from "lodash";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import PersonAdd from "@mui/icons-material/PersonAdd";
-import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
+import StyledButton from "../component_parts/sharedComponent/StyledButton";
 
 function NavBar() {
   const userData = JSON.parse(localStorage.getItem("data"));

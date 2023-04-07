@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-import StyledButton from "../StyledButton";
+import StyledButton from "../sharedComponent/StyledButton";
 import AuthContext from "./Context/AuthContext";
 import GoogleButton from "react-google-button";
 

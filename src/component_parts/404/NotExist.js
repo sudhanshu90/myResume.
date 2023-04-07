@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
-import StyledButton from "../StyledButton";
 import { useNavigate } from "react-router";
 import { useMediaQuery } from "@mui/material";
+import StyledButton from "../sharedComponent/StyledButton";
 
 function NotExist() {
   const navigate = useNavigate();

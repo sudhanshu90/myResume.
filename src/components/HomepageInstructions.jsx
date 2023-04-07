@@ -1,10 +1,10 @@
 import React from "react";
-import HomeStepper from "../component_parts/HomeStepper";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import HomeStepper from './HomeStepper'
 
 function HomepageInstructions() {
   const matches = useMediaQuery("(max-width:450px)");
@@ -60,8 +60,8 @@ function HomepageInstructions() {
             <HomeStepper
               alt="image not found"
               link="assets\image1.png"
-              height={300}
-              width={350}
+              height={180}
+              width={200}
             />
             <span
               style={{
@@ -99,8 +99,8 @@ function HomepageInstructions() {
             <HomeStepper
               alt="image not found"
               link="assets\image2.png"
-              height={330}
-              width={330}
+              height={180}
+              width={200}
             />
 
             <span
@@ -139,8 +139,8 @@ function HomepageInstructions() {
             <HomeStepper
               alt="image not found"
               link="assets\image3.png"
-              height={300}
-              width={380}
+              height={180}
+              width={200}
             />
 
             <span
