@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import AuthContext from "./AuthContext";
+import React from "react";
 import { Navigate } from "react-router";
 
 function ProtectRoute({ children }) {
