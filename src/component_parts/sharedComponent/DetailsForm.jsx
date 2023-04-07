@@ -1,34 +1,46 @@
 import React from "react";
+import Grid from "@mui/material/Unstable_Grid2";
+import Typography from "@mui/material/Typography";
+import Paper from "@mui/material/Paper";
+import { startCase } from "lodash";
+import { useMediaQuery } from "@mui/material";
 
-function DetailsForm() {
+function DetailsForm({ data, title }) {
+  const matches = useMediaQuery("(max-width:450px)");
   return (
     <div>
       <Paper
         elevation={4}
         sx={{
           padding: "18px",
-          margin: "2px 0",
-          overflowY: "scroll",
-          height: "450px",
+          overflowY: !matches ? "scroll" :'none',
+          height: !matches ? "465px" : 'auto',
         }}
       >
         <Typography
-          sx={{ padding: "8px 0", marginBottom: "12px" }}
+          sx={{ padding: "8px 0" }}
           variant="h6"
-          textAlign="center"
+          textAlign="center" 
           color="#36a298"
         >
-          {title}
+          {startCase(title)}
         </Typography>
         <div
           style={{
-            border: "2px solid #36a298",
+            border: "1px solid #36a298",
             borderRadius: "5px",
             padding: "16px",
             minHeight: "350px",
+            display: "flex",
+            flexDirection: "column",
           }}
         >
-          <Grid container spacing={2} color="white">
+          <Grid
+            container
+            spacing={2}
+            color="white"
+            sx={{ display: "flex", justifyContent: "center" }}
+          >
             {data?.map((val, index) => {
               const { Component } = val;
               return (

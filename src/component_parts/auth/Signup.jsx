@@ -7,7 +7,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
 import AuthContext from "./Context/AuthContext";
-import StyledButton from "../StyledButton";
+import StyledButton from "../sharedComponent/StyledButton";
 
 export default function Signup({ open }) {
   const theme = useTheme();
