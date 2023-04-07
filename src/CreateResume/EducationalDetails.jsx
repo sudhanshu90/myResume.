@@ -1,6 +1,5 @@
 import React from "react";
 import RegularText from "../component_parts/sharedComponent/RegularText";
-import StyledButton from "../component_parts/sharedComponent/StyledButton";
 import DetailsForm from "../component_parts/sharedComponent/DetailsForm";
 
 function EducationalDetails({ title = "Personal details" }) {

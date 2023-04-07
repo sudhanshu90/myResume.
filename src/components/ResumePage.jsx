@@ -11,7 +11,6 @@ import StyledButton from "../component_parts/sharedComponent/StyledButton";
 import AuthContext from "../component_parts/auth/Context/AuthContext";
 
 export default function ResumePage() {
-  const userData = JSON.parse(localStorage.getItem("data"));
   const { navigate } = useContext(AuthContext);
   return (
     <div

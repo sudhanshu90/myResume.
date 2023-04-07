@@ -28,7 +28,7 @@ function NotExist() {
         animate={{ y: 0 }}
         transition={{ ease: "easeOut", duration: 0.3 }}
       >
-        <img alt="404" width={matches ? 350 : 600} height={matches ? 350 : 600} src="assets\404.png" />
+        <img alt="img" width={matches ? 350 : 600} height={matches ? 350 : 600} src="assets\noRoute.png" />
         <StyledButton
           title="Go to Home"
           onClick={() => navigate("/")}

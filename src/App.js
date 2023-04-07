@@ -14,7 +14,6 @@ import { SnackbarProvider } from "notistack";
 
 const theme = createTheme();
 function App() {
-  const loggedIn = JSON.parse(localStorage.getItem("data"));
   return (
     <BrowserRouter>
       <SnackbarProvider
