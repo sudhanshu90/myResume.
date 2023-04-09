@@ -50,11 +50,13 @@ function AuthProvider({ children }) {
       });
   };
 
-  const googleLogin = () => {
+  const googleLogin = async () => {
     // signup with google
-    const provider = new GoogleAuthProvider();
+    setLoading(true);
+    const provider = await new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((res) => {
+        setLoading(false);
         localStorage.setItem("data", JSON.stringify(res?._tokenResponse));
         enqueueSnackbar("Login Successfully!", {
           variant: "success",
@@ -63,6 +65,7 @@ function AuthProvider({ children }) {
         navigate("/personal_details");
       })
       .catch((err) => {
+        setLoading(false);
         enqueueSnackbar(err.message, {
           variant: "error",
         });
@@ -71,12 +74,12 @@ function AuthProvider({ children }) {
 
   function signUpModalOpen() {
     // opens signup modal
-    setSignupOpen(true);
+  navigate('/sign-up')
   }
 
   function signInModalOpen() {
     // opens login modal
-    setSignInOpen(true);
+    navigate('/sign-in')
   }
 
   function handleClose() {
@@ -91,7 +94,6 @@ function AuthProvider({ children }) {
     setLoading(true);
     signInWithEmailAndPassword(auth, signupData?.email, signupData?.password)
       .then((res) => {
-        handleClose();
         setLoading(false);
         enqueueSnackbar("Login Successfully!", {
           variant: "success",
@@ -101,7 +103,6 @@ function AuthProvider({ children }) {
         navigate("/personal_details");
       })
       .catch((err) => {
-        handleClose();
         setLoading(false);
         enqueueSnackbar(err?.message, {
           variant: "error",
@@ -123,8 +124,9 @@ function AuthProvider({ children }) {
         enqueueSnackbar("Signup Successfully!", {
           variant: "success",
         });
-        handleClose();
-        setSignInOpen(true);
+        setTimeout(() => {
+          navigate("/sign-in");
+        }, 2000);
       })
       .catch((err) => {
         setLoading(false);

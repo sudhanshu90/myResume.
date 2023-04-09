@@ -2,7 +2,6 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  background-color: #005b76;
 }
 
 ::-webkit-scrollbar {
@@ -17,11 +16,9 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #36a298;
   border-radius: 10px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #36a298;
 }
