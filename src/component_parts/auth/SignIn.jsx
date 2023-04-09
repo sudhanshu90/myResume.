@@ -21,11 +21,11 @@ export default function SignIn({ open }) {
   const {
     loading,
     signupData,
-    signup,
+    login,
     setSignupData,
     handleClose,
-    googleSignUp,
-    signInModalOpen,
+    googleLogin,
+    signUpModalOpen,
   } = useContext(AuthContext);
 
   const handleInputChange = (event) => {
@@ -118,10 +118,10 @@ export default function SignIn({ open }) {
               }}
             >
               <img
-                src="assets\signup.png"
-                alt='signup_img'
+                src="assets/login.png"
+                alt='login_logo'
                 width={!responsive ? 180 : 420}
-                height={!responsive ? 180 : 420}
+                height={!responsive ? 180 : 400}
               />
             </div>
             <div>
@@ -178,7 +178,7 @@ export default function SignIn({ open }) {
                       title="Submit"
                       fullWidth
                       size="large"
-                      onClick={(e) => signup(e)}
+                      onClick={(e) => login(e)}
                       loading={loading}
                     />
 
@@ -189,16 +189,16 @@ export default function SignIn({ open }) {
                         flexDirection: "column",
                       }}
                     >
-                      <IconButton onClick={googleSignUp}>
+                      <IconButton onClick={googleLogin}>
                         <img src="https://img.icons8.com/color/36/null/google-logo.png" alt='google_logo' />
                       </IconButton>
                       <Typography variant="body1">or</Typography>
                       <Typography variant="subtitle1">
-                        Already have an account? —
+                        I am not registered —{" "}
                         <Button
-                          title="Sign In"
+                          title="Sign Up"
                           variant="text"
-                          onClick={signInModalOpen}
+                          onClick={signUpModalOpen}
                         />
                       </Typography>
                     </div>
