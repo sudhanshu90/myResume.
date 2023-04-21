@@ -1,5 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import React from "react";
+import themeColor from "../theme";
 
 function Button({
   title = "title",
@@ -26,7 +27,12 @@ function Button({
       sx={{
         width: width,
         height: height,
-        margin:'0 4px'
+        margin:'0 4px',
+        backgroundColor:themeColor.light.primary,
+        color:themeColor.light.secondary,
+        '&:hover':{
+          backgroundColor:themeColor.light.info,
+        }
       }}
     >
       {title}

@@ -81,7 +81,17 @@ export default function SignIn({ open }) {
                 padding: "0 24px",
               }}
             >
-              Resumetic
+              <span style={{ color: themeColor.light.slugText }}>Resum</span>
+            <span
+              style={{
+                backgroundColor: themeColor.light.primary,
+                padding: "4px 4px",
+                color: "white",
+                borderRadius: "2px",
+              }}
+            >
+              able
+            </span>
             </Link>
             <IconButton>
               <Link

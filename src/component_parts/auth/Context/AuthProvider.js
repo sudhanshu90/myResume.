@@ -100,7 +100,7 @@ function AuthProvider({ children }) {
         });
         const data = res;
         localStorage.setItem("data", JSON.stringify(data?._tokenResponse));
-        navigate("/personal_details");
+        navigate("/");
       })
       .catch((err) => {
         setLoading(false);

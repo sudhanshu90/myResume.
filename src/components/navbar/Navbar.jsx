@@ -160,7 +160,9 @@ function Navbar() {
             >
               &nbsp;Welcome!
             </Typography>
+            <span style={{ color: themeColor.light.primary}}>
             &nbsp;{startCase(userData?.displayName) || userData?.email}
+            </span>
           </Typography>
         </div>
       ) : (
@@ -265,7 +267,17 @@ function Navbar() {
                   color: themeColor.light.primary,
                 }}
               >
-                Resumetic
+                <span style={{ color: themeColor.light.slugText }}>Resum</span>
+                <span
+                  style={{
+                    backgroundColor: themeColor.light.primary,
+                    padding: "4px 4px",
+                    color: "white",
+                    borderRadius: "5px",
+                  }}
+                >
+                  able
+                </span>
               </Link>
               <IconButton onClick={toggleDrawer(anchor, true)}>
                 <MenuOpenIcon htmlColor={themeColor.light.primary} />
@@ -311,7 +323,17 @@ function Navbar() {
               color: themeColor.light.primary,
             }}
           >
-            Resumetic
+            <span style={{ color: themeColor.light.slugText }}>Resum</span>
+            <span
+              style={{
+                backgroundColor: themeColor.light.primary,
+                padding: "4px 4px",
+                color: "white",
+                borderRadius: "2px",
+              }}
+            >
+              able
+            </span>
           </Link>
           <div
             style={{
