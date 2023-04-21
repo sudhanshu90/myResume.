@@ -1,6 +1,6 @@
  const themeColor = {
   light: {
-    primary: "#2196f3",
+    primary: "#5CB3FF",
     secondary: "#FAF9F6",
     secondaryText: "#282828 ",
     slugText: "#515151 ",
