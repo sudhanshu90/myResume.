@@ -28,6 +28,7 @@ import AuthContext from "../../component_parts/auth/Context/AuthContext";
 import Button from "../../shared_component/Button";
 import VpnKeyIcon from "@mui/icons-material/VpnKey";
 import GroupAddIcon from "@mui/icons-material/GroupAdd";
+import CopyrightIcon from "@mui/icons-material/Copyright";
 import QuizIcon from "@mui/icons-material/Quiz";
 import { startCase } from "lodash";
 
@@ -96,11 +97,6 @@ function Navbar() {
     },
   ];
   const menuBottom = [
-    // {
-    //   id: 1,
-    //   title: "SETTINGS",
-    //   icon: <SettingsIcon />,
-    // },
     {
       id: 2,
       title: "LOGOUT",
@@ -160,8 +156,8 @@ function Navbar() {
             >
               &nbsp;Welcome!
             </Typography>
-            <span style={{ color: themeColor.light.primary}}>
-            &nbsp;{startCase(userData?.displayName) || userData?.email}
+            <span style={{ color: themeColor.light.primary }}>
+              &nbsp;{startCase(userData?.displayName) || userData?.email}
             </span>
           </Typography>
         </div>
@@ -228,6 +224,11 @@ function Navbar() {
           ))}
         </List>
       )}
+      <Divider orientation="horizontal">v0.1.2</Divider>
+      <div style={{ textAlign: "center", fontSize: "14px" }}>
+        <CopyrightIcon fontSize="14px" />
+        copyright - 2023
+      </div>
     </Box>
   );
 
@@ -241,7 +242,7 @@ function Navbar() {
               width: "100%",
               backgroundColor: themeColor.light.secondary,
               color: themeColor.light.primary,
-              height: "80px",
+              height: "70px",
               borderRadius: "0",
               display: "flex",
               alignItems: "center",
@@ -265,19 +266,31 @@ function Navbar() {
                   textDecoration: "none",
                   letterSpacing: "0.2rem",
                   color: themeColor.light.primary,
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               >
-                <span style={{ color: themeColor.light.slugText }}>Resum</span>
-                <span
+                <div
                   style={{
-                    backgroundColor: themeColor.light.primary,
-                    padding: "4px 4px",
-                    color: "white",
-                    borderRadius: "5px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
                   }}
                 >
-                  able
-                </span>
+                  <span style={{ color: themeColor.light.slugText }}>
+                    Resum
+                  </span>
+                  <span
+                    style={{
+                      backgroundColor: themeColor.light.primary,
+                      padding: "4px 4px",
+                      color: "white",
+                      borderRadius: "5px",
+                    }}
+                  >
+                    able
+                  </span>
+                </div>
               </Link>
               <IconButton onClick={toggleDrawer(anchor, true)}>
                 <MenuOpenIcon htmlColor={themeColor.light.primary} />
