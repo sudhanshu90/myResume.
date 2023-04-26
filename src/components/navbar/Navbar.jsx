@@ -156,8 +156,16 @@ function Navbar() {
             >
               &nbsp;Welcome!
             </Typography>
-            <span style={{ color: themeColor.light.primary }}>
-              &nbsp;{startCase(userData?.displayName) || userData?.email}
+            <span
+              style={{
+                color: themeColor.light.primary,
+                width: "200px",
+                wordWrap: "break-word",
+              }}
+            >
+              &nbsp;
+              {startCase(userData?.displayName) ||
+                userData?.email?.split("@")?.[0]}
             </span>
           </Typography>
         </div>
@@ -225,9 +233,15 @@ function Navbar() {
         </List>
       )}
       <Divider orientation="horizontal">v0.1.2</Divider>
-      <div style={{ textAlign: "center", fontSize: "14px" }}>
-        <CopyrightIcon fontSize="14px" />
-        copyright - 2023
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "14px",
+        }}
+      >
+        <CopyrightIcon fontSize="14px" /> copyright - 2023
       </div>
     </Box>
   );
@@ -416,6 +430,26 @@ function Navbar() {
                 </>
               ) : (
                 <>
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      margin: "0 16px",
+                      color: themeColor.light.slugText,
+                    }}
+                  >
+                    Welcome!&nbsp;
+                    <span
+                      style={{
+                        color: themeColor.light.primary,
+                        width: "200px",
+                        fontSize: "14px",
+                        wordWrap: "break-word",
+                      }}
+                    >
+                      {startCase(userData?.displayName) ||
+                        userData?.email?.split("@")?.[0]}
+                    </span>
+                  </Typography>
                   <IconButton aria-describedby="avatar" variant="contained">
                     <Tooltip title="profile">
                       <Avatar

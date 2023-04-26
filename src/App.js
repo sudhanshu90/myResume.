@@ -15,7 +15,6 @@ function App() {
       <Route path="/sign-up" element={<Signup />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/" element={<LandingPage />} />
-
       <Route
         path="/"
         element={<ProtectRoute>{/* <ResumePage /> */}</ProtectRoute>}
