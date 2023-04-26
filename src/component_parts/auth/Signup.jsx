@@ -82,16 +82,16 @@ export default function SignIn({ open }) {
               }}
             >
               <span style={{ color: themeColor.light.slugText }}>Resum</span>
-            <span
-              style={{
-                backgroundColor: themeColor.light.primary,
-                padding: "4px 4px",
-                color: "white",
-                borderRadius: "2px",
-              }}
-            >
-              able
-            </span>
+              <span
+                style={{
+                  backgroundColor: themeColor.light.primary,
+                  padding: "4px 4px",
+                  color: "white",
+                  borderRadius: "2px",
+                }}
+              >
+                able
+              </span>
             </Link>
             <IconButton>
               <Link
@@ -129,7 +129,7 @@ export default function SignIn({ open }) {
             >
               <img
                 src="assets\signup.png"
-                alt='signup_img'
+                alt="signup_img"
                 width={!responsive ? 180 : 420}
                 height={!responsive ? 180 : 420}
               />
@@ -200,7 +200,10 @@ export default function SignIn({ open }) {
                       }}
                     >
                       <IconButton onClick={googleSignUp}>
-                        <img src="https://img.icons8.com/color/36/null/google-logo.png" alt='google_logo' />
+                        <img
+                          src="https://img.icons8.com/color/36/null/google-logo.png"
+                          alt="google_logo"
+                        />
                       </IconButton>
                       <Typography variant="body1">or</Typography>
                       <Typography variant="subtitle1">

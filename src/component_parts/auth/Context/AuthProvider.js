@@ -74,12 +74,16 @@ function AuthProvider({ children }) {
 
   function signUpModalOpen() {
     // opens signup modal
-  navigate('/sign-up')
+    navigate("/sign-up");
   }
 
   function signInModalOpen() {
     // opens login modal
-    navigate('/sign-in')
+    if (!userData) {
+      navigate("/sign-in");
+    } else {
+      navigate("/build");
+    }
   }
 
   function handleClose() {
@@ -100,7 +104,7 @@ function AuthProvider({ children }) {
         });
         const data = res;
         localStorage.setItem("data", JSON.stringify(data?._tokenResponse));
-        navigate("/");
+        navigate("/build");
       })
       .catch((err) => {
         setLoading(false);
@@ -141,15 +145,7 @@ function AuthProvider({ children }) {
     e.preventDefault();
     localStorage.clear();
     navigate("/");
-    signOut(auth)
-      .then((res) => {
-        // Sign-out successful.
-        //   console.log(res);
-      })
-      .catch((err) => {
-        // An error happened.
-        //   console.log(err);
-      });
+    signOut(auth);
   };
 
   return (
