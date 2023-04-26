@@ -232,7 +232,7 @@ function Navbar() {
           ))}
         </List>
       )}
-      <Divider orientation="horizontal">v0.1.2</Divider>
+      <Divider orientation="horizontal">v0.0.3</Divider>
       <div
         style={{
           display: "flex",
