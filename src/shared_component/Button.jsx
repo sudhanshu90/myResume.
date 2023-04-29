@@ -1,7 +1,6 @@
 import { LoadingButton } from "@mui/lab";
 import React from "react";
 import themeColor from "../theme";
-import { capitalize } from "lodash";
 
 function Button({
   title = "title",
