@@ -12,6 +12,7 @@ import themeColor from "../../theme";
 import { IconButton } from "@mui/material";
 import Button from "../../shared_component/Button";
 import CloseIcon from "@mui/icons-material/Close";
+import Logo from "../../components/navbar/Logo";
 
 export default function SignIn({ open }) {
   const theme = useTheme();
@@ -64,35 +65,7 @@ export default function SignIn({ open }) {
               alignItems: "center",
             }}
           >
-            <Link
-              to="/"
-              style={{
-                fontSize: "24px",
-                fontWeight: "700",
-                fontFamily: "sans-serif",
-                cursor: "pointer",
-                textDecoration: "none",
-                letterSpacing: "0.2rem",
-                color: themeColor.light.primary,
-                height: "80px",
-                justifyContent: "start",
-                alignItems: "center",
-                display: "flex",
-                padding: "0 24px",
-              }}
-            >
-              <span style={{ color: themeColor.light.slugText }}>Resum</span>
-              <span
-                style={{
-                  backgroundColor: themeColor.light.primary,
-                  padding: "4px 4px",
-                  color: "white",
-                  borderRadius: "2px",
-                }}
-              >
-                able
-              </span>
-            </Link>
+            <Logo />
             <IconButton>
               <Link
                 to="/"

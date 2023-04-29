@@ -1,19 +1,22 @@
 import React from "react";
+import { Container } from "@mui/material";
+import ScrollDownAnimation from "../scrollCardAnimation/ScrollDownAnimation";
 import LandingPageHeader from "./Parts/LandingPageHeader";
 import StepsGuide from "./Parts/StepsGuide";
-import Instructions from "./Parts/Instructions";
-import { Container } from "@mui/material";
+import ImageSideText from "../ImageSideText";
 
-function LandingPage() {
+function LayoutPage() {
   return (
     <React.Fragment>
       <Container>
-      <LandingPageHeader />
-      <StepsGuide/>
+        <LandingPageHeader />
+        <ScrollDownAnimation cordinateY="500">
+          <StepsGuide />
+        </ScrollDownAnimation>
       </Container>
-      <Instructions/>
+      <ImageSideText />
     </React.Fragment>
   );
 }
 
-export default LandingPage;
+export default LayoutPage;
