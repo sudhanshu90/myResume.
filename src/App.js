@@ -1,64 +1,35 @@
 import "./index.css";
-import { createTheme, ThemeProvider } from "@mui/material";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LandingPage from "./components/LandingPage";
-import ChooseTemplates from "./component_parts/templates/ChooseTemplates";
+import { Route, Routes } from "react-router-dom";
 import NotExist from "./component_parts/404/NotExist";
-import ResumePage from "./components/ResumePage";
-import AuthProvider from "./component_parts/auth/Context/AuthProvider";
 import ProtectRoute from "./component_parts/auth/Context/ProtectRoute";
-import PersonalDetails from "./CreateResume/PersonalDetails";
-import EducationalDetails from "./CreateResume/EducationalDetails";
-import FormDataProvider from "./component_parts/sharedComponent/Context/FormDataProvider";
-import { SnackbarProvider } from "notistack";
+import SignIn from "./component_parts/auth/SignIn";
+import Signup from "./component_parts/auth/Signup";
+import Logout from "./component_parts/auth/Logout";
+import LayoutPage from "./components/Landing_page/LandingPage";
 
-const theme = createTheme();
 function App() {
   return (
-    <BrowserRouter>
-      <SnackbarProvider
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "center",
-        }}
+    <Routes>
+      <Route path="*" element={<NotExist />} />
+      <Route path="/sign-in" element={<SignIn />} />
+      <Route path="/sign-up" element={<Signup />} />
+      <Route path="/logout" element={<Logout />} />
+      <Route path="/" element={<LayoutPage />} />
+      <Route
+        path="/"
+        element={<ProtectRoute>{/* <ResumePage /> */}</ProtectRoute>}
       >
-        <AuthProvider>
-          <FormDataProvider>
-            <ThemeProvider theme={theme}>
-              <Routes>
-                <Route path="/" element={<LandingPage />} />
-                <Route path="*" element={<NotExist />} />
-                <Route
-                  path="/"
-                  element={
-                    <ProtectRoute>
-                      <ResumePage />
-                    </ProtectRoute>
-                  }
-                >
-                  <Route
-                    path="personal_details"
-                    element={<PersonalDetails />}
-                  />
-                  <Route
-                    path="educational_details"
-                    element={<EducationalDetails />}
-                  />
-                </Route>
-                <Route
-                  path="choose_templates"
-                  element={
-                    <ProtectRoute>
-                      <ChooseTemplates />
-                    </ProtectRoute>
-                  }
-                />
-              </Routes>
-            </ThemeProvider>
-          </FormDataProvider>
-        </AuthProvider>
-      </SnackbarProvider>
-    </BrowserRouter>
+        {/* <Route path="personal_details" element={<PersonalDetails />} /> */}
+        <Route
+          path="educational_details"
+          // element={<EducationalDetails />}
+        />
+      </Route>
+      <Route
+        path="choose_templates"
+        element={<ProtectRoute>{/* <ChooseTemplates /> */}</ProtectRoute>}
+      />
+    </Routes>
   );
 }
 

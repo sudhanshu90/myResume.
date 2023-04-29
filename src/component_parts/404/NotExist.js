@@ -1,50 +1,40 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { useNavigate } from "react-router";
 import { useMediaQuery } from "@mui/material";
-import StyledButton from "../sharedComponent/StyledButton";
+import React, { useContext } from "react";
+import Button from "../../shared_component/Button";
+import ArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import AuthContext from "../auth/Context/AuthContext";
 
 function NotExist() {
-  const navigate = useNavigate();
-  const matches = useMediaQuery('(max-width:450px)');
+  const responsive = useMediaQuery("(min-width:800px)");
+  const { goToHome } = useContext(AuthContext);
 
   return (
     <div
       style={{
-        margin: "0 auto",
-        width:'100%',
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        fontSize: "72px",
-        color: "#fefefe",
-        background:
-          "linear-gradient(to left bottom, #051937, #003859, #005b76, #007e8b, #36a298)",
+        backgroundColor: "white",
+        width: "100%",
       }}
     >
-      <motion.div
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ ease: "easeOut", duration: 0.3 }}
+      <div
+        style={{
+          margin: "0 auto",
+          width: !responsive ? "100%" : "35%",
+          height: "100vh",
+          textAlign: "center",
+        }}
       >
-        <img alt="img" width={matches ? 350 : 600} height={matches ? 350 : 600} src="assets\noRoute.png" />
-        <StyledButton
-          title="Go to Home"
-          onClick={() => navigate("/")}
-          style={{
-            width:"95%",
-            display: "flex",
-            justifyContent: "center",
-            textAlign: "center",
-            backgroundColor: "#EF5350",
-            "&:hover": {
-              backgroundColor: "#E57373",
-            },
-          }}
-          varient="contained"
-        />
-      </motion.div>
+        <img alt="404" src="assets\noRounte.gif" height="auto" width="100%" />
+        <div>
+          <Button
+            title="Go to Home"
+            startIcon={<ArrowLeftIcon />}
+            height="40px"
+            width="150px"
+            style={{ margin: "12px 0" }}
+            onClick={() => goToHome()}
+          />
+        </div>
+      </div>
     </div>
   );
 }

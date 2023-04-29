@@ -12,7 +12,6 @@ import themeColor from "../../theme";
 import { IconButton } from "@mui/material";
 import Button from "../../shared_component/Button";
 import CloseIcon from "@mui/icons-material/Close";
-import Logo from "../../components/navbar/Logo";
 
 export default function SignIn({ open }) {
   const theme = useTheme();
@@ -22,11 +21,11 @@ export default function SignIn({ open }) {
   const {
     loading,
     signupData,
-    signup,
+    login,
     setSignupData,
     handleClose,
-    googleSignUp,
-    signInModalOpen,
+    googleLogin,
+    signUpModalOpen,
   } = useContext(AuthContext);
 
   const handleInputChange = (event) => {
@@ -65,7 +64,35 @@ export default function SignIn({ open }) {
               alignItems: "center",
             }}
           >
-            <Logo />
+            <Link
+              to="/"
+              style={{
+                fontSize: "24px",
+                fontWeight: "700",
+                fontFamily: "sans-serif",
+                cursor: "pointer",
+                textDecoration: "none",
+                letterSpacing: "0.2rem",
+                color: themeColor.light.primary,
+                height: "80px",
+                justifyContent: "start",
+                alignItems: "center",
+                display: "flex",
+                padding: "0 24px",
+              }}
+            >
+             <span style={{ color: themeColor.light.slugText }}>Resum</span>
+            <span
+              style={{
+                backgroundColor: themeColor.light.primary,
+                padding: "4px 4px",
+                color: "white",
+                borderRadius: "2px",
+              }}
+            >
+              able
+            </span>
+            </Link>
             <IconButton>
               <Link
                 to="/"
@@ -101,10 +128,10 @@ export default function SignIn({ open }) {
               }}
             >
               <img
-                src="assets\signup.png"
-                alt="signup_img"
+                src="assets/login.png"
+                alt='login_logo'
                 width={!responsive ? 180 : 420}
-                height={!responsive ? 180 : 420}
+                height={!responsive ? 180 : 400}
               />
             </div>
             <div>
@@ -161,7 +188,7 @@ export default function SignIn({ open }) {
                       title="Submit"
                       fullWidth
                       size="large"
-                      onClick={(e) => signup(e)}
+                      onClick={(e) => login(e)}
                       loading={loading}
                     />
 
@@ -172,19 +199,16 @@ export default function SignIn({ open }) {
                         flexDirection: "column",
                       }}
                     >
-                      <IconButton onClick={googleSignUp}>
-                        <img
-                          src="https://img.icons8.com/color/36/null/google-logo.png"
-                          alt="google_logo"
-                        />
+                      <IconButton onClick={googleLogin}>
+                        <img src="https://img.icons8.com/color/36/null/google-logo.png" alt='google_logo' />
                       </IconButton>
                       <Typography variant="body1">or</Typography>
                       <Typography variant="subtitle1">
-                        Already have an account? —
+                        I am not registered —{" "}
                         <Button
-                          title="Sign In"
+                          title="Sign Up"
                           variant="text"
-                          onClick={signInModalOpen}
+                          onClick={signUpModalOpen}
                         />
                       </Typography>
                     </div>

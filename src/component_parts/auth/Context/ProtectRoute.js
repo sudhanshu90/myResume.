@@ -5,7 +5,7 @@ function ProtectRoute({ children }) {
   const userData = JSON.parse(localStorage.getItem("data"));
   if (userData) return <div>{children}</div>;
   else {
-    return <Navigate to="/" />;
+    return <Navigate to="/signin" />;
   }
 }
 
