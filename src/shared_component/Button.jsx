@@ -1,6 +1,7 @@
 import { LoadingButton } from "@mui/lab";
 import React from "react";
 import themeColor from "../theme";
+import { capitalize } from "lodash";
 
 function Button({
   title = "title",
@@ -13,9 +14,11 @@ function Button({
   onClick,
   endIcon,
   startIcon,
+  style,
 }) {
   return (
     <LoadingButton
+      style={style}
       fullWidth={fullWidth}
       loading={loading}
       loadingIndicator="Loading…"
@@ -27,12 +30,13 @@ function Button({
       sx={{
         width: width,
         height: height,
-        margin:'0 4px',
-        backgroundColor:themeColor.light.primary,
-        color:themeColor.light.secondary,
-        '&:hover':{
-          backgroundColor:themeColor.light.info,
-        }
+        textTransform: "capitalize",
+        margin: "0 4px",
+        backgroundColor: themeColor.light.primary,
+        color: themeColor.light.secondary,
+        "&:hover": {
+          backgroundColor: themeColor.light.info,
+        },
       }}
     >
       {title}

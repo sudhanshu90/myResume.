@@ -32,6 +32,10 @@ function AuthProvider({ children }) {
     };
   }, []);
 
+  const goToHome = () => {
+    navigate("/");
+  };
+
   const googleSignUp = () => {
     // signup with google
     const provider = new GoogleAuthProvider();
@@ -166,6 +170,7 @@ function AuthProvider({ children }) {
         googleSignUp,
         googleLogin,
         userData,
+        goToHome,
       }}
     >
       {children}

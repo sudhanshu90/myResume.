@@ -4,8 +4,8 @@ import NotExist from "./component_parts/404/NotExist";
 import ProtectRoute from "./component_parts/auth/Context/ProtectRoute";
 import SignIn from "./component_parts/auth/SignIn";
 import Signup from "./component_parts/auth/Signup";
-import LandingPage from "./components/Landing_page/LandingPage";
 import Logout from "./component_parts/auth/Logout";
+import LayoutPage from "./components/Landing_page/LandingPage";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
       <Route path="/sign-in" element={<SignIn />} />
       <Route path="/sign-up" element={<Signup />} />
       <Route path="/logout" element={<Logout />} />
-      <Route path="/" element={<LandingPage />} />
+      <Route path="/" element={<LayoutPage />} />
       <Route
         path="/"
         element={<ProtectRoute>{/* <ResumePage /> */}</ProtectRoute>}

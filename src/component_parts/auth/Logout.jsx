@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useContext } from "react";
-import { useEffect } from "react";
 import AuthContext from "./Context/AuthContext";
+import { CircularProgress, Typography } from "@mui/material";
+import themeColor from "../../theme";
 
 function Logout() {
   const { navigate } = useContext(AuthContext);
@@ -9,7 +10,26 @@ function Logout() {
     localStorage.clear();
     navigate("/");
   });
-  return <div>Logging out...</div>;
+  return (
+    <React.Fragment>
+      <div
+        style={{
+          width: "100%",
+          height: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          backgroundColor: themeColor.light.primary,
+        }}
+      >
+        <Typography margin="12px 0" color={themeColor.light.secondary}>
+          Logging out...
+        </Typography>
+        <CircularProgress sx={{ color: themeColor.light.secondary }} />
+      </div>
+    </React.Fragment>
+  );
 }
 
 export default Logout;
