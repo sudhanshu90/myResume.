@@ -21,7 +21,7 @@ import AuthContext from "../../component_parts/auth/Context/AuthContext";
 import { startCase } from "lodash";
 import { Link } from "react-router-dom";
 
-function ResponsiveNavbar({menuBottom=[],loginMenu=[],menuTop=[]}) {
+function ResponsiveNavbar({ menuBottom = [], loginMenu = [], menuTop = [] }) {
   const { userData } = useContext(AuthContext);
   const [state, setState] = React.useState({
     right: false,
@@ -163,9 +163,21 @@ function ResponsiveNavbar({menuBottom=[],loginMenu=[],menuTop=[]}) {
           alignItems: "center",
           justifyContent: "center",
           fontSize: "14px",
+          color: themeColor.light.secondaryText,
         }}
       >
-        <CopyrightIcon fontSize="14px" /> copyright - 2023
+        <CopyrightIcon fontSize="14px" /> 2023 - Resumable
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: "14px",
+          color: themeColor.light.secondaryText,
+        }}
+      >
+        All rights reserved
       </div>
     </Box>
   );
@@ -194,7 +206,10 @@ function ResponsiveNavbar({menuBottom=[],loginMenu=[],menuTop=[]}) {
               }}
             >
               <Logo />
-              <IconButton onClick={toggleDrawer(anchor, true)}>
+              <IconButton
+                onClick={toggleDrawer(anchor, true)}
+                sx={{ padding: "0 16px" }}
+              >
                 <MenuOpenIcon htmlColor={themeColor.light.primary} />
               </IconButton>
             </div>
