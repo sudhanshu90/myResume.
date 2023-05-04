@@ -1,4 +1,4 @@
-import { Skeleton, Typography, useMediaQuery } from "@mui/material";
+import {  Typography, useMediaQuery } from "@mui/material";
 import React, { useContext, useState } from "react";
 import themeColor from "../../../theme";
 import { motion } from "framer-motion";
