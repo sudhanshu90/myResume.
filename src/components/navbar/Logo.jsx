@@ -2,7 +2,7 @@ import React from "react";
 import themeColor from "../../theme";
 import { Link } from "react-router-dom";
 
-function Logo() {
+const Logo = () => {
   return (
     <React.Fragment>
       <Link
@@ -26,7 +26,11 @@ function Logo() {
             alignItems: "center",
           }}
         >
-          <span style={{ color: themeColor.light.slugText }}>Resum</span>
+          <span
+            style={{ color: themeColor.light.primaryText, fontWeight: "300" }}
+          >
+            Resum
+          </span>
           <span
             style={{
               backgroundColor: themeColor.light.primary,
@@ -41,6 +45,6 @@ function Logo() {
       </Link>
     </React.Fragment>
   );
-}
+};
 
 export default Logo;

@@ -1,14 +1,18 @@
-import { Typography, useMediaQuery } from "@mui/material";
-import React, { useContext } from "react";
+import {  Typography, useMediaQuery } from "@mui/material";
+import React, { useContext, useState } from "react";
 import themeColor from "../../../theme";
 import { motion } from "framer-motion";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import Button from "../../../shared_component/Button";
 import AuthContext from "../../../component_parts/auth/Context/AuthContext";
+import VideoPlayModal from "../../../shared_component/media/VideoPlayModal";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 function LandingPageHeader() {
   const responsive = useMediaQuery("(min-width:800px)");
   const { signInModalOpen } = useContext(AuthContext);
+  const [openVideo, setOpenVideo] = useState(false);
 
   return (
     <React.Fragment>
@@ -21,55 +25,66 @@ function LandingPageHeader() {
           margin: !responsive ? "20px 0 20px 0" : "36px 0 36px 0",
         }}
       >
-        <motion.div
-          initial={responsive ? { opacity: "0%" } : { opacity: "0%" }}
-          animate={responsive ? { opacity: "100%" } : { opacity: "100%" }}
-          style={{
-            margin: responsive ? "32px 0" : "32px auto",
-            textAlign: responsive ? "" : "center",
-          }}
-        >
-          <Typography
-            variant={responsive ? "h3" : "h4"}
-            fontFamily="sans-serif"
-            sx={{
-              letterSpacing: "3px",
-              fontWeight: responsive ? "200" : "100",
-              color: themeColor.light.slugText,
+        <div style={{ width: responsive ? "80%" : "100%" }}>
+          <motion.div
+            initial={{ opacity: "0%" }}
+            animate={{ opacity: "100%" }}
+            style={{
+              margin: responsive ? "32px 0" : "32px auto",
             }}
           >
-            Craft Your Perfect
-            <br />
-            Resume with&nbsp;
-            <br />
-            <span
-              style={{
-                color: themeColor.light.slugText,
-                fontWeight: responsive ? "600" : "700",
+            <Typography
+              variant="subtitle2"
+              fontFamily="Lucida Sans"
+              color="GrayText"
+            >
+              Resume Builder
+            </Typography>
+            <Typography
+              variant={responsive ? "h3" : "h4"}
+              fontFamily="Rockwell"
+              sx={{
+                letterSpacing: "3px",
+                fontWeight: responsive ? "200" : "100",
+                color: themeColor.light.primaryText,
               }}
             >
-              Resum
-            </span>
-            <span
-              style={{
-                backgroundColor: themeColor.light.primary,
-                padding: "4px 4px",
-                color: "white",
-                borderRadius: "2px",
-              }}
+              Crafting your perfect resume in just 5 minutes!
+              <br />
+            </Typography>
+            <Typography
+              marginTop="16px"
+              fontFamily="Lucida Sans"
+              lineHeight={!responsive ? "" : 1.7}
+              color={themeColor.light.secondaryText}
             >
-              able
-            </span>
-          </Typography>
-          <div style={{ marginTop: responsive ? "12px" : "20px" }}>
-            <Button
-              title="Build My Resume"
-              size="large"
-              endIcon={<ArrowForwardIcon />}
-              onClick={signInModalOpen}
-            />
-          </div>
-        </motion.div>
+              Our resume builder website is designed to help job seekers create
+              professional, polished resumes quickly and easily. Our
+              user-friendly interface makes it simple to input your information,
+              choose a template, and generate a high-quality resume that
+              highlights your skills and experience.
+            </Typography>
+            <div style={{ marginTop: responsive ? "12px" : "20px" }}>
+              <Button
+                title="Build My Resume"
+                size="large"
+                endIcon={<KeyboardDoubleArrowRightIcon />}
+                onClick={signInModalOpen}
+                noMargin
+                variant="outlined"
+              />
+              <Button
+                title="Watch video"
+                style={{ margin: "0 8px" }}
+                size="large"
+                endIcon={<PlayCircleIcon />}
+                onClick={() => setOpenVideo(true)}
+                noMargin
+                variant="text"
+              />
+            </div>
+          </motion.div>
+        </div>
         <div
           style={{
             display: "flex",
@@ -77,32 +92,23 @@ function LandingPageHeader() {
             alignItems: "center",
           }}
         >
-          <div
-            style={{
-              position: "absolute",
-              zIndex: -999,
-              top: !responsive ? "" : "40px",
-            }}
-          >
-            <motion.div initial={{ x: 50 }} animate={{ x: 0 }}>
-              <img
-                src="assets\graph.png"
-                alt="graph_logo"
-                width={responsive ? 700 : 350}
-                height={responsive ? 700 : 400}
-              />
-            </motion.div>
-          </div>
-
-          <motion.div initial={{ x: -50 }} animate={{ x: 0 }}>
-            <img
-              src="landing_Page_Images\third.png"
+          <motion.div initial={{ opacity: "0%" }} animate={{ opacity: "100%" }}>
+            <LazyLoadImage
               alt="landing_page_image"
-              width={responsive ? 500 : 300}
-              height={responsive ? 500 : 300}
+              width={responsive ? 300 : 200}
+              height={responsive ? 390 : 250}
+              effect="blur"
+              style={{ transform: "scaleX(-1)" }}
+              src="assets/mr_builder/3d.png" 
             />
           </motion.div>
         </div>
+        {openVideo && (
+          <VideoPlayModal
+            open={openVideo}
+            handleClose={() => setOpenVideo(false)}
+          />
+        )}
       </div>
     </React.Fragment>
   );
