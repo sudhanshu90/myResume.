@@ -6,22 +6,21 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
-import axios from "axios";
 import React from "react";
 import {  TextFieldType } from "../form/TextFieldType";
 
 export const ReviewDetailsFillModal = ({ open, handleClose, value }) => {
   const responsive = useMediaQuery("(min-width:800px)");
-  const submitReviews = (e) => {
-    axios
-      .post("https://myresume-9253e-default-rtdb.firebaseio.com/reviews.json", {
-        name: "sudhanshu",
-        reviews: e.target.value,
-      })
-      .then((res) => {
-        console.log(res);
-      });
-  };
+  // const submitReviews = (e) => {
+  //   axios
+  //     .post("https://myresume-9253e-default-rtdb.firebaseio.com/reviews.json", {
+  //       name: "sudhanshu",
+  //       reviews: e.target.value,
+  //     })
+  //     .then((res) => {
+  //       console.log(res);
+  //     });
+  // };
   return (
     <React.Fragment>
       <div>
