@@ -5,6 +5,9 @@ import Navbar from "./components/navbar/Navbar";
 import { BrowserRouter } from "react-router-dom";
 import AuthProvider from "./component_parts/auth/Context/AuthProvider";
 import { SnackbarProvider } from "notistack";
+import Footer from "./components/footer/Footer";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import "./shared_component/review_card/style.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,6 +21,7 @@ root.render(
       <AuthProvider>
         <Navbar />
         <App />
+        <Footer />
       </AuthProvider>
     </BrowserRouter>
   </SnackbarProvider>

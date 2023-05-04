@@ -1,8 +1,8 @@
 import {
   Avatar,
+  Card,
   Container,
   IconButton,
-  Paper,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -21,17 +21,19 @@ function NoResponsiveNavbar({ navList = [] }) {
 
   return (
     <React.Fragment>
-      <Paper
-        elevation={3}
+      <Card
         style={{
           width: "100%",
-          backgroundColor: themeColor.light.secondary,
           color: themeColor.light.primary,
           height: "80px",
           borderRadius: "0",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          position: "sticky",
+          boxShadow: "0",
+          top: 0,
+          zIndex: 999,
         }}
       >
         <Container maxWidth="100%">
@@ -96,14 +98,23 @@ function NoResponsiveNavbar({ navList = [] }) {
                 {!userData ? (
                   <>
                     <Button
-                      title="Sign-in"
-                      size="medium"
+                      title="Sign in"
+                      size="large"
+                      // endIcon={<ArrowForwardIcon />}
                       onClick={signInModalOpen}
+                      noMargin
+                      variant="text"
+                      style={{ margin: "0 4px" }}
+                      noHover
                     />
                     <Button
-                      title="Sign-up"
-                      size="medium"
+                      title="Sign up"
+                      size="large"
+                      // endIcon={<ArrowForwardIcon />}
                       onClick={signUpModalOpen}
+                      noMargin
+                      variant="outlined"
+                      style={{ margin: "0 4px" }}
                     />
                   </>
                 ) : (
@@ -154,7 +165,7 @@ function NoResponsiveNavbar({ navList = [] }) {
             </div>
           </div>
         </Container>
-      </Paper>
+      </Card>
     </React.Fragment>
   );
 }
