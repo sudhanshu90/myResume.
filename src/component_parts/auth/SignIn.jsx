@@ -89,6 +89,7 @@ export default function SignIn({ open }) {
           </div>
           <DialogContent
             style={{
+              width: !responsive ? "100%" : "60%",
               margin: "0 auto",
               display: responsive ? "flex" : "",
               alignItems: "center",
@@ -101,10 +102,10 @@ export default function SignIn({ open }) {
               }}
             >
               <img
-                src="assets/login.png"
+                src="assets/mr_builder/signin.png"
                 alt="login_logo"
-                width={!responsive ? 180 : 420}
-                height={!responsive ? 180 : 400}
+                width={!responsive ? 150 : 300}
+                height={!responsive ? 200 : 400}
               />
             </div>
             <div>
@@ -165,14 +166,6 @@ export default function SignIn({ open }) {
                       loading={loading}
                       variant="outlined"
                     />
-                    {/* <Button
-                      title="Submit"
-                      fullWidth
-                      size="large"
-                      onClick={(e) => login(e)}
-                      loading={loading}
-                    /> */}
-
                     <div
                       style={{
                         display: "flex",
