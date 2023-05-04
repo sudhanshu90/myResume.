@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import { Rating, Typography, useMediaQuery } from "@mui/material";
 import themeColor from "../../theme";
@@ -28,26 +28,23 @@ const ReviewCard = () => {
   const responsive = useMediaQuery("(min-width:800px)");
   const [openModal, setOpenModal] = useState(false);
   const [ratingValue, setRatingValue] = useState(0);
-  const checkNumber = (number) => {
-    if (number > people.length - 1) {
-      return 0;
-    }
-    if (number < 0) {
-      return people.length - 1;
-    }
-    return number;
-  };
 
   const nextPerson = useCallback(() => {
     // your function logic here
     setIndex((index) => {
       let newIndex = index + 1;
-      return checkNumber(newIndex);
+      if (newIndex > people.length - 1) {
+        return 0;
+      }
+      if (newIndex < 0) {
+        return people.length - 1;
+      }
+      return newIndex;
     });
-  }, []);
+  }, [people.length]);
 
   useEffect(() => {
-   setInterval(() => {
+    setInterval(() => {
       nextPerson();
     }, 5000);
   }, [nextPerson]);
