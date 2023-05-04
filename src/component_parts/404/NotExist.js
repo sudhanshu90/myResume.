@@ -1,8 +1,9 @@
-import { useMediaQuery } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import React, { useContext } from "react";
-import Button from "../../shared_component/Button";
 import ArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import AuthContext from "../auth/Context/AuthContext";
+import Button from "../../shared_component/Button";
+import themeColor from "../../theme";
 
 function NotExist() {
   const responsive = useMediaQuery("(min-width:800px)");
@@ -23,16 +24,32 @@ function NotExist() {
           textAlign: "center",
         }}
       >
-        <img alt="404" src="assets\noRounte.gif" height="auto" width="100%" />
-        <div>
-          <Button
-            title="Go to Home"
-            startIcon={<ArrowLeftIcon />}
-            height="40px"
-            width="150px"
-            style={{ margin: "12px 0" }}
-            onClick={() => goToHome()}
+        <div style={{ paddingTop: "64px" }}>
+          <img
+            alt="404"
+            src="assets/mr_builder/404.png"
+            height="300"
+            width="250"
           />
+          <div style={{ textAlign: "center" }}>
+            <Typography
+              variant="h1"
+              fontWeight="bold"
+              color={themeColor.light.primary}
+            >
+              404
+            </Typography>
+            <Button
+              title="Go to Home"
+              startIcon={<ArrowLeftIcon />}
+              size="large"
+              height="40px"
+              width="250px"
+              style={{ marginLeft: "16px" }}
+              onClick={() => goToHome()}
+              variant="outlined"
+            />
+          </div>
         </div>
       </div>
     </div>
