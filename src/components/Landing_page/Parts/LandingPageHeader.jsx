@@ -1,4 +1,4 @@
-import {  Typography, useMediaQuery } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import React, { useContext, useState } from "react";
 import themeColor from "../../../theme";
 import { motion } from "framer-motion";
@@ -33,19 +33,27 @@ function LandingPageHeader() {
               margin: responsive ? "32px 0" : "32px auto",
             }}
           >
+            <span style={{ display: "flex", alignItems: "center" }}>
+              <img
+                src="assets/rating.gif"
+                alt="not_found"
+                height={50}
+                width={50}
+              />
+              <Typography variant="caption">540+ resumes downloaded</Typography>
+            </span>
             <Typography
               variant="subtitle2"
               fontFamily="Lucida Sans"
               color="GrayText"
             >
-              Resume Builder
+              Online Resume Builder
             </Typography>
             <Typography
               variant={responsive ? "h3" : "h4"}
-              fontFamily="Rockwell"
               sx={{
                 letterSpacing: "3px",
-                fontWeight: responsive ? "200" : "100",
+                fontWeight: responsive ? "500" : "400",
                 color: themeColor.light.primaryText,
               }}
             >
@@ -99,7 +107,7 @@ function LandingPageHeader() {
               height={responsive ? 390 : 250}
               effect="blur"
               style={{ transform: "scaleX(-1)" }}
-              src="assets/mr_builder/3d.png" 
+              src="assets/mr_builder/3d.png"
             />
           </motion.div>
         </div>

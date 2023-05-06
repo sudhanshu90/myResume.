@@ -9,6 +9,7 @@ import GroupAddIcon from "@mui/icons-material/GroupAdd";
 import QuizIcon from "@mui/icons-material/Quiz";
 import ResponsiveNavbar from "./ResponsiveNavbar";
 import NoResponsiveNavbar from "./NoResponsiveNavbar";
+import ReviewsIcon from "@mui/icons-material/Reviews";
 
 function Navbar() {
   const responsive = useMediaQuery("(min-width:800px)");
@@ -27,6 +28,11 @@ function Navbar() {
     },
     {
       id: 3,
+      title: "Reviews",
+      path: "/write_your_review",
+    },
+    {
+      id: 4,
       title: "Faq",
       path: "/faq",
     },
@@ -48,6 +54,12 @@ function Navbar() {
     },
     {
       id: 3,
+      title: "Reviews",
+      path: "/write_your_review",
+      icon: <ReviewsIcon />,
+    },
+    {
+      id: 4,
       title: "Faq",
       path: "/faq",
       icon: <QuizIcon />,
@@ -68,6 +80,12 @@ function Navbar() {
     },
     {
       id: 3,
+      title: "Reviews",
+      path: "/write_your_review",
+      icon: <ReviewsIcon />,
+    },
+    {
+      id: 4,
       title: "Faq",
       icon: <LiveHelpIcon />,
     },

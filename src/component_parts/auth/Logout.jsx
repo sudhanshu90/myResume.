@@ -15,18 +15,20 @@ function Logout() {
       <div
         style={{
           width: "100%",
-          height: "100vh",
+          height: "80vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
-          backgroundColor: themeColor.light.primary,
+          color: themeColor.light.secondary,
         }}
       >
-        <Typography margin="12px 0" color={themeColor.light.secondary}>
+        <Typography margin="12px 0" color={themeColor.light.primary}>
           Logging out...
         </Typography>
-        <CircularProgress sx={{ color: themeColor.light.secondary }} />
+        <CircularProgress
+          sx={{ color: themeColor.light.primary, fontSize: "26px" }}
+        />
       </div>
     </React.Fragment>
   );

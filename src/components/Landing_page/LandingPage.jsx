@@ -1,9 +1,9 @@
 import React from "react";
 import { Container } from "@mui/material";
 import LandingPageHeader from "./Parts/LandingPageHeader";
-import CustomerReviews from "./Parts/CustomerReviews";
 import BuilderIntroduction from "./Parts/BuilderIntroduction";
 import TemplateChooseGuide from "./Parts/TemplateChooseGuide";
+import ReviewCard from "../../shared_component/review_card/ReviewCard";
 
 function LayoutPage() {
   return (
@@ -14,7 +14,7 @@ function LayoutPage() {
       </Container>
       <TemplateChooseGuide />
       <Container>
-        <CustomerReviews />
+        <ReviewCard />
       </Container>
     </React.Fragment>
   );

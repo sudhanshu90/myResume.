@@ -6,6 +6,7 @@ import SignIn from "./component_parts/auth/SignIn";
 import Signup from "./component_parts/auth/Signup";
 import Logout from "./component_parts/auth/Logout";
 import LayoutPage from "./components/Landing_page/LandingPage";
+import UserReviewForm from "./pages/reviews/UserReviewForm";
 
 function App() {
   return (
@@ -15,11 +16,11 @@ function App() {
       <Route path="/sign-up" element={<Signup />} />
       <Route path="/logout" element={<Logout />} />
       <Route path="/" element={<LayoutPage />} />
+      <Route path="write_your_review" element={<UserReviewForm />} />
       <Route
         path="/"
         element={<ProtectRoute>{/* <ResumePage /> */}</ProtectRoute>}
       >
-        {/* <Route path="personal_details" element={<PersonalDetails />} /> */}
         <Route
           path="educational_details"
           // element={<EducationalDetails />}
