@@ -46,39 +46,47 @@ function NoResponsiveNavbar({ navList = [] }) {
                 alignItems: "center",
               }}
             >
-              {navList?.map((val) => {
-                return (
-                  <span
-                    key={val.id}
-                    style={{
-                      textDecoration: "none",
-                      listStyle: "none",
-                      width: "80px",
-                      display: "flex",
-                      justifyContent: "space-around",
-                      alignItems: "center",
-                      fontWeight: "500",
-                      fontFamily: "sans-serif",
-                    }}
-                  >
-                    {userData ? (
-                      <Link
-                        to={val.path}
-                        style={{
-                          textDecoration: "none",
-                          textTransform: "capitalize",
-                          color: themeColor.light.primary,
-                          fontFamily: "sans-serif",
-                        }}
-                      >
-                        {val.title}
-                      </Link>
-                    ) : (
-                      <></>
-                    )}
-                  </span>
-                );
-              })}
+              {userData &&
+                navList?.map((val) => {
+                  return (
+                    <Typography
+                      key={val.id}
+                      sx={{
+                        textDecoration: "none",
+                        listStyle: "none",
+                        width: "80px",
+                        display: "flex",
+                        justifyContent: "space-around",
+                        alignItems: "center",
+                        fontWeight: "500",
+                        margin: "0 8px",
+                        padding: "8px",
+                        transition: "ease-in-out",
+                        "&:hover": {
+                          borderBottom: `2px inset ${themeColor.light.primary}`,
+                          backgroundColor: themeColor.light.primaryLight,
+                        },
+                      }}
+                    >
+                      {userData ? (
+                        <Link
+                          to={val.path}
+                          style={{
+                            textDecoration: "none",
+                            textTransform: "capitalize",
+                            color: themeColor.light.primary,
+                            fontFamily: "sans-serif",
+                            padding: "4px",
+                          }}
+                        >
+                          {val.title}
+                        </Link>
+                      ) : (
+                        <></>
+                      )}
+                    </Typography>
+                  );
+                })}
             </ul>
             <div
               style={{
@@ -100,7 +108,6 @@ function NoResponsiveNavbar({ navList = [] }) {
                     <Button
                       title="Sign in"
                       size="large"
-                      // endIcon={<ArrowForwardIcon />}
                       onClick={signInModalOpen}
                       noMargin
                       variant="text"
@@ -110,7 +117,6 @@ function NoResponsiveNavbar({ navList = [] }) {
                     <Button
                       title="Sign up"
                       size="large"
-                      // endIcon={<ArrowForwardIcon />}
                       onClick={signUpModalOpen}
                       noMargin
                       variant="outlined"
