@@ -1,37 +1,25 @@
 import React, { useContext } from "react";
-import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
-import TextField from "@mui/material/TextField";
 import AuthContext from "./Context/AuthContext";
-import { Link } from "react-router-dom";
-import { IconButton } from "@mui/material";
+import { IconButton, Paper } from "@mui/material";
 import Button from "../../shared_component/Button";
-import themeColor from "../../theme";
-import CloseIcon from "@mui/icons-material/Close";
-import Logo from "../../components/navbar/Logo";
+import { TextFieldType } from "../../shared_component/form/TextFieldType";
 
 export default function SignIn({ open }) {
-  const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
   const responsive = useMediaQuery("(min-width:800px)");
-
   const {
     loading,
     signupData,
     login,
     setSignupData,
-    handleClose,
     googleLogin,
     signUpModalOpen,
   } = useContext(AuthContext);
 
   const handleInputChange = (event) => {
     const { id, value } = event.target;
-
     setSignupData((prevProps) => ({
       ...prevProps,
       [id]: value,
@@ -40,106 +28,49 @@ export default function SignIn({ open }) {
 
   return (
     <>
-      <div>
-        <Dialog
-          fullScreen={fullScreen}
-          open
-          onClose={handleClose}
-          aria-labelledby="responsive-dialog-title"
-          sx={{
-            "& .MuiDialog-container": {
-              "& .MuiPaper-root": {
-                width: "100%",
-                height: "100%",
-                maxWidth: "100%", // Set your width here
-                maxHeight: "800px",
-                margin: 0,
-              },
-            },
+      <div style={{ height: "90vh" }}>
+        <DialogContent
+          style={{
+            width: !responsive ? "100%" : "60%",
+            margin: "10vh auto",
+            display: responsive ? "flex" : "",
+            alignItems: "center",
+            justifyContent: "space-between",
           }}
         >
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
+              textAlign: "center",
             }}
           >
-            <Logo />
-            <IconButton>
-              <Link
-                to="/"
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "700",
-                  fontFamily: "sans-serif",
-                  cursor: "pointer",
-                  textDecoration: "none",
-                  letterSpacing: "0.2rem",
-                  color: themeColor.light.primary,
-                  justifyContent: "start",
-                  alignItems: "center",
-                  display: "flex",
-                  padding: "8px",
-                }}
-              >
-                <CloseIcon />
-              </Link>
-            </IconButton>
+            <img
+              src="assets/mr_builder/signin.png"
+              alt="login_logo"
+              width={!responsive ? 150 : 300}
+              height={!responsive ? 200 : 400}
+            />
           </div>
-          <DialogContent
-            style={{
-              width: !responsive ? "100%" : "60%",
-              margin: "0 auto",
-              display: responsive ? "flex" : "",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <div
-              style={{
-                textAlign: "center",
-              }}
-            >
-              <img
-                src="assets/mr_builder/signin.png"
-                alt="login_logo"
-                width={!responsive ? 150 : 300}
-                height={!responsive ? 200 : 400}
-              />
-            </div>
+          <Paper elevation={6} sx={{ padding: "16px 16px" }}>
             <div>
               <form>
                 <div style={{ width: "100%" }}>
-                  <TextField
+                  <TextFieldType
                     id="email"
-                    fullWidth
-                    sx={{ margin: "12px 0" }}
-                    label="Email ID"
+                    title="Email ID"
                     placeholder="Enter email"
                     variant="outlined"
                     type="email"
-                    required
                     value={signupData.email}
                     onChange={handleInputChange}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
                   />
-                  <TextField
+                  <TextFieldType
                     id="password"
-                    fullWidth
-                    sx={{ margin: "16px 0" }}
-                    label="Password"
+                    title="Password"
                     placeholder="Enter password"
                     variant="outlined"
                     type="password"
-                    required
                     value={signupData.password}
                     onChange={handleInputChange}
-                    InputLabelProps={{
-                      shrink: true,
-                    }}
                   />
                 </div>
               </form>
@@ -193,9 +124,8 @@ export default function SignIn({ open }) {
                 </Typography>
               </div>
             </div>
-          </DialogContent>
-          <DialogActions></DialogActions>
-        </Dialog>
+          </Paper>
+        </DialogContent>
       </div>
     </>
   );

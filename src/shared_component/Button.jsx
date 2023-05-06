@@ -9,7 +9,7 @@ function Button({
   size = "small",
   width,
   height,
-  variant = "contained",
+  variant = "outlined",
   fullWidth,
   onClick,
   endIcon,
