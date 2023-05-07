@@ -104,7 +104,15 @@ function ResponsiveNavbar({ menuBottom = [], loginMenu = [], menuTop = [] }) {
                 <ListItemIcon sx={{ color: themeColor.light.primary }}>
                   {val.icon}
                 </ListItemIcon>
-                <ListItemText primary={val.title} />
+                <Link
+                  to={val.path}
+                  style={{
+                    textDecoration: "none",
+                    color: themeColor.light.primary,
+                  }}
+                >
+                  <ListItemText primary={val.title} />
+                </Link>
               </ListItemButton>
             </ListItem>
           ))}
