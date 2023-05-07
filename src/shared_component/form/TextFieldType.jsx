@@ -41,7 +41,7 @@ export const TextFieldType = ({
       required={required}
       helperText={message}
       textarea={textarea.toString()}
-      multiline
+      multiline={textarea}
       rows={textarea ? 4 : 1}
       InputLabelProps={{
         shrink: true,

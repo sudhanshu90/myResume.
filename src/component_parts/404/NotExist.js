@@ -1,5 +1,5 @@
 import { Typography, useMediaQuery } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import ArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import AuthContext from "../auth/Context/AuthContext";
 import Button from "../../shared_component/Button";
@@ -8,6 +8,9 @@ import themeColor from "../../theme";
 function NotExist() {
   const responsive = useMediaQuery("(min-width:800px)");
   const { goToHome } = useContext(AuthContext);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div
