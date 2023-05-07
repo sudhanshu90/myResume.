@@ -156,7 +156,7 @@ function ResponsiveNavbar({ menuBottom = [], loginMenu = [], menuTop = [] }) {
           ))}
         </List>
       )}
-      <Divider orientation="horizontal">v0.5.0</Divider>
+      <Divider orientation="horizontal">v0.5.1</Divider>
       <div
         style={{
           display: "flex",
