@@ -8,9 +8,11 @@ import AuthContext from "../../component_parts/auth/Context/AuthContext";
 import Loader from "../loader/Loader";
 
 const ReviewCard = () => {
+  const navigate = useNavigate();
   const responsive = useMediaQuery("(min-width:800px)");
   const { reviewsListLoad, reviewsList } = useContext(AuthContext);
-  const navigate = useNavigate();
+  const calculateOverAllRatings = reviewsList?.map((val)=> val.rating)?.reduce((a,b)=> a+b,0)
+  const overAllRatings = parseInt(calculateOverAllRatings/reviewsList.length,10)
 
   if (reviewsListLoad) {
     return <Loader />;
@@ -35,11 +37,14 @@ const ReviewCard = () => {
         sx={{ color: themeColor.light.primary, fontWeight: "bold" }}
       >
         People Love Our Resumable.
-        <br />
+        <br/>
+        <Typography variant="subtitle1">
+         Overall rating
+        </Typography>
         <Rating
           name="no-value"
           readOnly
-          value={4}
+          value={overAllRatings}
           sx={{ fontSize: "36px", color: themeColor.light.primary }}
         />
         <br />

@@ -29,6 +29,7 @@ function AuthProvider({ children }) {
     email: "",
     password: "",
   });
+
   // signup form empty after submit
   useEffect(() => {
     return () => {
@@ -137,7 +138,10 @@ function AuthProvider({ children }) {
           variant: "success",
         });
         const data = res;
-        localStorage.setItem("data", JSON.stringify(data?._tokenResponse));
+        localStorage.setItem(
+          "data",
+          JSON.stringify({ ...data?._tokenResponse, photoUrl: "" })
+        );
         if (location.state === "write_your_review") {
           navigate("write_your_review");
         } else {
@@ -198,7 +202,7 @@ function AuthProvider({ children }) {
       await addDoc(userReviewsRef, {
         ...reviewData,
         rating,
-        profile: "",
+        profile: userData?.photoUrl,
       })
         .then((res) => {
           enqueueSnackbar("Review submitted!", {
@@ -206,14 +210,14 @@ function AuthProvider({ children }) {
           });
           setLoading(false);
           setReviewData({
-            fullname:'',
-            role:'',
-            profile:'',
-            desc:''
-          })
-          setRating(0)
-          navigate('/')
-          reviewsListFetch()
+            fullname: "",
+            role: "",
+            profile: "",
+            desc: "",
+          });
+          setRating(0);
+          navigate("/");
+          reviewsListFetch();
         })
         .catch((err) => {
           enqueueSnackbar("Error!", {

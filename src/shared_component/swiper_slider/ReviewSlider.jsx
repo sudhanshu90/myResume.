@@ -1,17 +1,26 @@
-import { Card, CardContent, Rating, Typography } from "@mui/material";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  Rating,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
 import themeColor from "../../theme";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 const ReviewSlider = ({ data }) => {
+  const responsive = useMediaQuery("(min-width:800px)");
   return (
     <Carousel
       autoPlay
       animation="slide"
       indicators={false} // Hide the pagination dots
       sx={{
-        width: "60%",
+        width: "100%",
         border: `0.5px solid ${themeColor.light.primary}`,
         borderRadius: "5px",
       }}
@@ -30,12 +39,21 @@ const ReviewSlider = ({ data }) => {
             }}
           >
             <div className="img-container">
-              <img
-                src={item.profile === "" ? "assets/user.png" : item.profile}
-                alt="user_profile"
-                className="person-img"
-                loading="lazy"
-              />
+              {item.profile ? (
+                <LazyLoadImage
+                  src={item.profile}
+                  alt="user_profile"
+                  effect="blur"
+                  className="person-img"
+                  width="100%"
+                />
+              ) : (
+                <Avatar
+                  sx={{ width: "100%", height: "100%", fontSize: "100px" }}
+                >
+                  {item.fullname[0]}
+                </Avatar>
+              )}
               <span className="quote-icon">
                 <FormatQuoteIcon />
               </span>
@@ -60,7 +78,7 @@ const ReviewSlider = ({ data }) => {
                   ({item.role})
                 </Typography>
                 <Rating
-                readOnly
+                  readOnly
                   name="no-value"
                   value={item?.rating}
                   sx={{ color: themeColor.light.primary }}
@@ -78,7 +96,13 @@ const ReviewSlider = ({ data }) => {
                   textTransform: "capitalize",
                 }}
               >
-                {item.desc}
+                {!responsive
+                  ? `${
+                      item.desc.length > 100
+                        ? `${item.desc.slice(0, 100)}...`
+                        : item.desc
+                    }`
+                  : item.desc}
               </Typography>
             </CardContent>
           </Card>
