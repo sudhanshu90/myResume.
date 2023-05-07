@@ -71,11 +71,13 @@ function Navbar() {
     {
       id: 1,
       title: "Home",
+      path: "/",
       icon: <HomeIcon />,
     },
     {
       id: 2,
       title: "Templates",
+      path: "/templates",
       icon: <AutoStoriesIcon />,
     },
     {
@@ -87,6 +89,7 @@ function Navbar() {
     {
       id: 4,
       title: "Faq",
+      path: "/faq",
       icon: <LiveHelpIcon />,
     },
   ];
