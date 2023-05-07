@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import DialogContent from "@mui/material/DialogContent";
 import Typography from "@mui/material/Typography";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -6,9 +6,13 @@ import AuthContext from "./Context/AuthContext";
 import { IconButton, Paper } from "@mui/material";
 import Button from "../../shared_component/Button";
 import { TextFieldType } from "../../shared_component/form/TextFieldType";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
-export default function SignIn({ open }) {
+export default function SignIn() {
   const responsive = useMediaQuery("(min-width:800px)");
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const {
     loading,
@@ -30,7 +34,7 @@ export default function SignIn({ open }) {
 
   return (
     <>
-      <div style={{ height: "90vh" }}>
+      <div>
         <DialogContent
           style={{
             width: !responsive ? "100%" : "60%",
@@ -45,11 +49,12 @@ export default function SignIn({ open }) {
               textAlign: "center",
             }}
           >
-            <img
-              src="assets/mr_builder/signup.png"
-              alt="signup_img"
+            <LazyLoadImage
               width={!responsive ? 150 : 300}
               height={!responsive ? 200 : 400}
+              effect="blur"
+              src="assets/mr_builder/signup.png"
+              alt="signup_img"
             />
           </div>
           <Paper elevation={6} sx={{ padding: "16px 16px" }}>

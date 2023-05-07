@@ -6,23 +6,30 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
-import { useNavigate } from "react-router";
-import auth from "../../../firebase";
+import { useLocation, useNavigate } from "react-router";
+import auth, { db } from "../../../firebase";
 import { useSnackbar } from "notistack";
 import { GoogleAuthProvider } from "firebase/auth";
+import { addDoc, collection, getDocs } from "@firebase/firestore";
 
 function AuthProvider({ children }) {
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
+  const location = useLocation();
   const userData = JSON.parse(localStorage.getItem("data"));
+  // handel states
   const [loading, setLoading] = useState(false);
   const [signupOpen, setSignupOpen] = useState(false);
   const [signInOpen, setSignInOpen] = useState(false);
+  const [reviewData, setReviewData] = useState({});
+  const [rating, setRating] = useState(0);
+  const [reviewsList, setReviewsList] = useState([]);
+  const [reviewsListLoad, setReviewsListLoad] = useState(true);
   const [signupData, setSignupData] = useState({
     email: "",
     password: "",
   });
-
+  // signup form empty after submit
   useEffect(() => {
     return () => {
       setSignupData({
@@ -32,12 +39,27 @@ function AuthProvider({ children }) {
     };
   }, []);
 
+  // fetch reviews list
+  const reviewsListFetch = async () => {
+    setReviewsListLoad(true);
+    const userReviewsRef = collection(db, "reviews");
+    const result = await getDocs(userReviewsRef);
+    setReviewsList(result.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    setReviewsListLoad(false);
+  };
+
+  // fetch reviews-list when component mount
+  useEffect(() => {
+    reviewsListFetch();
+  }, []);
+
+  // goto home function
   const goToHome = () => {
     navigate("/");
   };
 
+  // signup with google
   const googleSignUp = () => {
-    // signup with google
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((res) => {
@@ -54,8 +76,8 @@ function AuthProvider({ children }) {
       });
   };
 
+  // signup with google
   const googleLogin = async () => {
-    // signup with google
     setLoading(true);
     const provider = await new GoogleAuthProvider();
     signInWithPopup(auth, provider)
@@ -66,7 +88,11 @@ function AuthProvider({ children }) {
           variant: "success",
         });
         setSignInOpen(false);
-        navigate("/personal_details");
+        if (location.state === "write_your_review") {
+          navigate("write_your_review");
+        } else {
+          navigate("/personal_details");
+        }
       })
       .catch((err) => {
         setLoading(false);
@@ -76,13 +102,17 @@ function AuthProvider({ children }) {
       });
   };
 
+  // opens signup modal
   function signUpModalOpen() {
-    // opens signup modal
-    navigate("/sign-up");
+    if (location.state === "write_your_review") {
+      navigate("/sign-up", { state: `${location.state}` });
+    } else {
+      navigate("/sign-up");
+    }
   }
 
+  // opens login modal
   function signInModalOpen() {
-    // opens login modal
     if (!userData) {
       navigate("/sign-in");
     } else {
@@ -90,14 +120,14 @@ function AuthProvider({ children }) {
     }
   }
 
+  // close signup and login modal
   function handleClose() {
-    // close signup and login modal
     setSignupOpen(false);
     setSignInOpen(false);
   }
 
+  // login service with email and password
   const login = (e) => {
-    // login service
     e.preventDefault();
     setLoading(true);
     signInWithEmailAndPassword(auth, signupData?.email, signupData?.password)
@@ -108,7 +138,11 @@ function AuthProvider({ children }) {
         });
         const data = res;
         localStorage.setItem("data", JSON.stringify(data?._tokenResponse));
-        navigate("/build");
+        if (location.state === "write_your_review") {
+          navigate("write_your_review");
+        } else {
+          navigate("/build");
+        }
       })
       .catch((err) => {
         setLoading(false);
@@ -118,8 +152,8 @@ function AuthProvider({ children }) {
       });
   };
 
+  // signup service with email and password
   const signup = (e) => {
-    // signup service
     e.preventDefault();
     setLoading(true);
     createUserWithEmailAndPassword(
@@ -133,7 +167,11 @@ function AuthProvider({ children }) {
           variant: "success",
         });
         setTimeout(() => {
-          navigate("/sign-in");
+          if (location.state === "write_your_review") {
+            navigate("sign-in", { state: "write_your_review" });
+          } else {
+            navigate("sign-in");
+          }
         }, 2000);
       })
       .catch((err) => {
@@ -144,12 +182,48 @@ function AuthProvider({ children }) {
       });
   };
 
+  // logout service
   const logout = (e) => {
-    // logout service
     e.preventDefault();
     localStorage.clear();
     navigate("/");
     signOut(auth);
+  };
+
+  // submit reviews
+  const submitReview = async () => {
+    const userReviewsRef = collection(db, "reviews");
+    if (userData) {
+      setLoading(true);
+      await addDoc(userReviewsRef, {
+        ...reviewData,
+        rating,
+        profile: "",
+      })
+        .then((res) => {
+          enqueueSnackbar("Review submitted!", {
+            variant: "success",
+          });
+          setLoading(false);
+          setReviewData({
+            fullname:'',
+            role:'',
+            profile:'',
+            desc:''
+          })
+          setRating(0)
+          navigate('/')
+          reviewsListFetch()
+        })
+        .catch((err) => {
+          enqueueSnackbar("Error!", {
+            variant: "error",
+          });
+          setLoading(false);
+        });
+    } else {
+      navigate("sign-in", { state: "write_your_review" });
+    }
   };
 
   return (
@@ -171,6 +245,14 @@ function AuthProvider({ children }) {
         googleLogin,
         userData,
         goToHome,
+        reviewData,
+        rating,
+        setReviewData,
+        setRating,
+        location,
+        submitReview,
+        reviewsList,
+        reviewsListLoad,
       }}
     >
       {children}

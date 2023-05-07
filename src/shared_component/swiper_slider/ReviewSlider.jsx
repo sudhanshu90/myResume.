@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Rating, Typography } from "@mui/material";
 import React from "react";
 import Carousel from "react-material-ui-carousel";
 import FormatQuoteIcon from "@mui/icons-material/FormatQuote";
@@ -11,13 +11,13 @@ const ReviewSlider = ({ data }) => {
       animation="slide"
       indicators={false} // Hide the pagination dots
       sx={{
-        width:"100%",
+        width: "60%",
         border: `0.5px solid ${themeColor.light.primary}`,
         borderRadius: "5px",
       }}
     >
       {data?.map((item) => (
-        <div style={{ display: "flex" }}>
+        <div key={item.id} style={{ display: "flex" }}>
           <Card
             key={item.id}
             style={{
@@ -31,7 +31,7 @@ const ReviewSlider = ({ data }) => {
           >
             <div className="img-container">
               <img
-                src={item.image === "" ? "assets/user.png" : item.image}
+                src={item.profile === "" ? "assets/user.png" : item.profile}
                 alt="user_profile"
                 className="person-img"
                 loading="lazy"
@@ -47,18 +47,26 @@ const ReviewSlider = ({ data }) => {
                 color={themeColor.light.primary}
                 component="h2"
                 textAlign="center"
-                marginBottom={4}
+                sx={{ textTransform: "capitalize" }}
               >
-                {item.title}
+                {item.fullname}
                 <Typography
                   variant="subtitle2"
                   color={themeColor.light.disabled}
                   component="h2"
                   textAlign="center"
+                  sx={{ textTransform: "capitalize" }}
                 >
                   ({item.role})
                 </Typography>
+                <Rating
+                readOnly
+                  name="no-value"
+                  value={item?.rating}
+                  sx={{ color: themeColor.light.primary }}
+                />
               </Typography>
+
               <Typography
                 variant="body2"
                 component="p"
@@ -67,9 +75,10 @@ const ReviewSlider = ({ data }) => {
                   width: "90%",
                   textAlign: "center",
                   margin: "0 auto",
+                  textTransform: "capitalize",
                 }}
               >
-                {item.description}
+                {item.desc}
               </Typography>
             </CardContent>
           </Card>

@@ -18,6 +18,7 @@ function Button({
   noMargin,
   noHover,
   href,
+  disabled
 }) {
   return (
     <a
@@ -31,6 +32,7 @@ function Button({
         style={style}
         fullWidth={fullWidth}
         loading={loading}
+        disabled={disabled}
         loadingIndicator={
           <CircularProgress
             size={20}

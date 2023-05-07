@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Divider,
   Paper,
@@ -10,13 +10,24 @@ import themeColor from "../../theme";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { TextFieldType } from "../../shared_component/form/TextFieldType";
 import Button from "../../shared_component/Button";
-import axios from "axios";
+import AuthContext from "../../component_parts/auth/Context/AuthContext";
+import Loader from "../../shared_component/loader/Loader";
 
 function UserReviewForm() {
   const responsive = useMediaQuery("(min-width:800px)");
-  const [reviewData, setReviewData] = useState({});
-  const [rating, setRating] = useState(0);
+  const {
+    loading,
+    submitReview,
+    reviewData,
+    rating,
+    setReviewData,
+    setRating,
+    reviewsListLoad,
+  } = useContext(AuthContext);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const handelChange = (event) => {
     const { id, value } = event.target;
     setReviewData((preData) => ({
@@ -25,24 +36,6 @@ function UserReviewForm() {
     }));
   };
 
-  useEffect(()=>{
-    axios.get('https://myresume-9253e-default-rtdb.firebaseio.com/reviews').then((res)=>{
-      console.log(res)
-    }).catch((err)=>{
-      console.log(err)
-    })
-  })
-
-  const submitReview = () => {
-    axios
-      .post("https://myresume-9253e-default-rtdb.firebaseio.com/reviews.json", {
-        reviewData,
-        rating
-      })
-      .then((res) => {
-        console.log(res);
-      });
-  };
   const formData = [
     {
       key: 1,
@@ -50,7 +43,7 @@ function UserReviewForm() {
       Component: TextFieldType,
       title: "Author Name or Nickname",
       placeholder: "Enter Author Name or Nickname",
-      required: false,
+      required: true,
       type: "text",
       value: reviewData.fullname,
     },
@@ -60,7 +53,7 @@ function UserReviewForm() {
       Component: TextFieldType,
       title: "Role or Profession",
       placeholder: "Enter Role or Profession",
-      required: false,
+      required: true,
       type: "text",
       value: reviewData.role,
     },
@@ -76,7 +69,9 @@ function UserReviewForm() {
       value: reviewData.desc,
     },
   ];
-
+  if (reviewsListLoad) {
+    return <Loader />;
+  }
   return (
     <div
       style={{
@@ -173,7 +168,18 @@ function UserReviewForm() {
             );
           }
         )}
-        <Button title="Submit review" noMargin onClick={submitReview} />
+        <Button
+          title="Submit review"
+          noMargin
+          onClick={submitReview}
+          loading={loading}
+          disabled={
+            !reviewData.fullname ||
+            !rating ||
+            !reviewData.desc ||
+            !reviewData.role
+          }
+        />
       </Paper>
     </div>
   );
